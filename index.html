@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funding Calculator JSON Generator</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+    }
+    h2 {text-align: center; margin-bottom: 20px; color: #333;}
+    .container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .form-container, .json-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        flex: 1;
+        min-width: 350px;
+        max-width: 500px;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+        margin-left:20px;
+    }
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: #555;
+    }
+    .form-group input, .form-group select {
+        padding: 8px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    .form-group input[type="date"] {
+        padding: 6px 10px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #007bff;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+    textarea {
+        width: 90%;
+        height: 90%;
+        padding: 10px;
+        font-family: monospace;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        resize: none;
+        background: #f7f9fc;
+    }
+    h3 {margin-top: 15px; color: #444;}
+</style>
+</head>
+<body>
+
+<h2>Funding Calculator JSON Generator</h2>
+
+<div class="container">
+    <div class="form-container">
+        <h3>Course Info</h3>
+        <div class="form-group">
+            <label>Course Code</label>
+            <input type="text" id="courseCode" value="CC_CTG500000746">
+        </div>
+		<div class="form-group">
+            <label>Course Type</label>
+            <input type="text" id="courseType">
+        </div>
+		<div class="form-group">
+            <label>Course Category</label>
+            <input type="text" id="courseCategory">
+        </div>
+        <div class="form-group">
+            <label>Course Reference Number</label>
+            <input type="text" id="courseRef" value="CTG500000746">
+        </div>
+        <div class="form-group">
+            <label>Course Start Date</label>
+            <input type="date" id="courseStart">
+        </div>
+        <div class="form-group">
+            <label>Course End Date</label>
+            <input type="date" id="courseEnd">
+        </div>
+        <div class="form-group">
+            <label>Course Fee</label>
+            <input type="number" id="courseFee" value="1000">
+        </div>
+        <div class="form-group">
+            <label>Training Hours</label>
+            <input type="number" id="trainingHours">
+        </div>
+        <div class="form-group">
+            <label>Funded Hours</label>
+            <input type="number" id="fundedHours">
+        </div>
+
+        <h3>Module Info</h3>
+        <div class="form-group">
+            <label>Module Code</label>
+            <input type="text" id="moduleCode" value="MC1136">
+        </div>
+        <div class="form-group">
+            <label>Module Reference Number</label>
+            <input type="text" id="moduleRef" value="MTG_00MC1136">
+        </div>
+        <div class="form-group">
+            <label>Module Start Date</label>
+            <input type="date" id="moduleStart">
+        </div>
+        <div class="form-group">
+            <label>Module End Date</label>
+            <input type="date" id="moduleEnd">
+        </div>
+        <div class="form-group">
+            <label>Assessment Fee</label>
+            <input type="number" id="assessmentFee">
+        </div>
+
+        <h3>Intake Info</h3>
+        <div class="form-group">
+            <label>Intake Number</label>
+            <input type="text" id="intakeNumber" value="IT201801">
+        </div>
+        <div class="form-group">
+            <label>Intake Start Date</label>
+            <input type="date" id="intakeStart" value="2025-08-15">
+        </div>
+        <div class="form-group">
+            <label>Intake End Date</label>
+            <input type="date" id="intakeEnd" value="2025-08-31">
+        </div>
+
+        <h3>Learner Info</h3>
+        <div class="form-group">
+            <label>Learner ID</label>
+            <input type="text" id="learnerId" value="S8348637F">
+        </div>
+        <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="dob" value="1980-05-15">
+        </div>
+        <div class="form-group">
+            <label>Basic Salary</label>
+            <select id="basicSalary">
+				<option value="">-- Select Basic Salary --</option>
+                <option value="0">Below 1000</option>
+				<option value="1">From 1000 to 1499</option>
+				<option value="2">From 1500 to 1999</option>
+				<option value="3">From 2000 to 2499</option>
+				<option value="4">From 2500 to 2999</option>
+				<option value="5">From 3000 to 3999</option>
+				<option value="6">From 4000 to 4999</option>
+				<option value="7">From 5000 to 5999</option>
+				<option value="8">Above 6000</option>
+				<option value="9">Unemployed</option>
+				<option value="10">Unknown</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Education</label>
+            <select id="education">
+			    <option value="">-- Select Education --</option>
+                <option value="1">No Formal Qualification / Pre-Primary / Lower Primary</option>
+				<option value="2">Primary</option>
+				<option value="3">Lower Secondary</option>
+				<option value="4">Secondary</option>
+				<option value="5">Post-Secondary (Non-Tertiary): General & Vocational</option>
+				<option value="6">Polytechnic Diploma</option>
+				<option value="7">Professional Qualification And Other Diploma</option>
+				<option value="8">Bachelor's Or Equivalent</option>
+				<option value="9">Postgraduate Diploma / Certificate (Excluding Master's And Doctorate)</option>
+				<option value="10">Master's And Doctorate Or Equivalent</option>
+				<option value="11">Modular Certification (Non-Award Courses / Non-Full Qualifications)</option>
+				<option value="12">Not Reported</option>
+				<option value="13">Others</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Employment Status</label>
+            <select id="employStatus">
+				<option value="">-- Select Employment Status --</option>
+                <option value=true>true</option>
+                <option value=false>false</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>NTUC Union Member</label>
+            <select id="isNTUCUnionMember">
+			<option value="">-- Is NTUC Union Member --</option>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Residential Status</label>
+            <select id="residentialStatus">
+				<option value="">-- Select Citizenship --</option>
+                <option value="1">Singapore Citizen</option>
+				<option value="2">Singapore PR</option>
+				<option value="3">Foreigner</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Pass Type</label>
+            <select id="passType">
+				<option value="">-- Select Pass Type --</option>
+				<option value="0">R Pass</option>
+				<option value="1">S Pass</option>
+				<option value="2">P1 Pass</option>
+				<option value="3">P2 Pass</option>
+				<option value="4">Q Pass</option>
+				<option value="5">PEP</option>
+				<option value="6">WHP</option>
+				<option value="7">TEP</option>
+				<option value="8">Entre</option>
+				<option value="9">DP</option>
+				<option value="10">LTVP</option>
+				<option value="11">LOC</option>
+				<option value="12">MWP</option>
+				<option value="13">STP</option>
+				<option value="14">LTVP Plus</option>
+				<option value="15">IEO</option>
+				<option value="16">Others</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Low Income</label>
+            <select id="isLowIncome">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+
+        <h3>Company Info</h3>
+        <div class="form-group">
+            <label>Company Code</label>
+            <input type="text" id="companyCode">
+        </div>
+        <div class="form-group">
+            <label>Employer UEN</label>
+            <input type="text" id="employerUen">
+        </div>
+        <div class="form-group">
+            <label>Is SME</label>
+            <select id="isSME">
+				<option></option>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Is Unionised</label>
+            <select id="isUnionised">
+				<option></option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Industry Type</label>
+            <select id="industryType">
+                <option value="">-- Select Industry --</option>
+                <option value="AERO">Aerospace</option>
+                <option value="AIRT">Air Transport</option>
+                <option value="BST">Business Skills Training</option>
+                <option value="CON">Construction</option>
+                <option value="CT">Consulting and training services</option>
+                <option value="IND">Default Industry</option>
+                <option value="EDU">Education</option>
+                <option value="ELEC">Electronics</option>
+                <option value="ENCH">Energy & Chemicals</option>
+                <option value="ENVS">Environmental Services</option>
+                <option value="FINS">Financial Services</option>
+                <option value="FDMF">Food Manufacturing</option>
+                <option value="FDSV">Food Services</option>
+                <option value="GOVT">Government</option>
+                <option value="HLTH">Healthcare</option>
+                <option value="HTLS">Hotels</option>
+                <option value="ICTM">ICT and Media</option>
+                <option value="IN21">Industry ITM 2021</option>
+                <option value="LAND">Land Transport</option>
+                <option value="LOGI">Logistics</option>
+                <option value="MRNO">Marine & Offshore</option>
+                <option value="NGO">Non-Governmental Organisations</option>
+                <option value="NTUC">NTUC Group (Non-MTI Industry)</option>
+                <option value="OTHR">Others</option>
+                <option value="PREC">Precision Engineering</option>
+                <option value="PROS">Professional Services</option>
+                <option value="PUBL">Public Services</option>
+                <option value="REES">Real Estate</option>
+                <option value="RETL">Retail</option>
+                <option value="SEAT">Sea Transport</option>
+                <option value="SECU">Security</option>
+                <option value="SCOV">Social/Civic Organisations (Non-MTI Industry)</option>
+                <option value="TRG">Training</option>
+                <option value="WHSL">Wholesale Trade</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+            <label>Is Affiliate</label>
+            <select id="isAffiliate">
+				<option></option>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+            </select>
+        </div>
+
+        <h3>Registration Info</h3>
+        <div class="form-group">
+            <label>Registration Date</label>
+            <input type="date" id="registrationDate" value="2025-05-15">
+        </div>
+        <div class="form-group">
+            <label>Sponsorship Type</label>
+            <select id="sponsorshipType">
+                <option value="1">Company Sponsor</option>
+                <option value="0">Individual Sponsor</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Transaction Type</label>
+            <select id="transactionType">
+                <option value="CALCULATE">CALCULATE</option>
+                <option value="CONSUME">CONSUME</option>
+				<option value="CONSUME">RELEASE</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Booking Id</label>
+            <input type="text" id="bookingId">
+        </div>
+
+        <button onclick="generateJSON()">Generate JSON</button>
+    </div>
+
+    <div class="json-container">
+        <h3>Generated JSON</h3>
+        <textarea id="outputJSON" readonly></textarea>
+    </div>
+</div>
+
+<script>
+function addIfValid(obj, key, value) {
+    // Skip null, undefined, empty string
+    if (value !== null && value !== undefined && value !== "" && !(typeof value === "number" && isNaN(value))) {
+        obj[key] = value;
+    }
+}
+
+function generateJSON() {
+    const json = {};
+
+    // Course
+    const course = {};
+    addIfValid(course, "code", document.getElementById('courseCode').value);
+	addIfValid(course, "courseType", document.getElementById('courseType').value);
+	addIfValid(course, "courseCategory", document.getElementById('courseCategory').value);
+    addIfValid(course, "referenceNumber", document.getElementById('courseRef').value);
+    addIfValid(course, "startDate", document.getElementById('courseStart').value);
+    addIfValid(course, "endDate", document.getElementById('courseEnd').value);
+    addIfValid(course, "fee", Number(document.getElementById('courseFee').value));
+    addIfValid(course, "numberOfTrainingHours", Number(document.getElementById('trainingHours').value));
+    addIfValid(course, "fundedHours", Number(document.getElementById('fundedHours').value));
+    
+
+    const module = {};
+    addIfValid(module, "code", document.getElementById('moduleCode').value);
+    addIfValid(module, "referenceNumber", document.getElementById('moduleRef').value);
+    addIfValid(module, "startDate", document.getElementById('moduleStart').value);
+    addIfValid(module, "endDate", document.getElementById('moduleEnd').value);
+    addIfValid(module, "assessmentFee", Number(document.getElementById('assessmentFee').value));
+    if (Object.keys(module).length > 0) course.module = module;
+
+    const intake = {};
+    addIfValid(intake, "number", document.getElementById('intakeNumber').value);
+    addIfValid(intake, "startDate", document.getElementById('intakeStart').value);
+    addIfValid(intake, "endDate", document.getElementById('intakeEnd').value);
+    if (Object.keys(intake).length > 0) course.intake = intake;
+
+    if (Object.keys(course).length > 0) json.course = course;
+
+    // Learner
+    const learner = {};
+    addIfValid(learner, "id", document.getElementById('learnerId').value);
+    addIfValid(learner, "dateOfBirth", document.getElementById('dob').value);
+    addIfValid(learner, "basicSalary", Number(document.getElementById('basicSalary').value));
+    addIfValid(learner, "education", Number(document.getElementById('education').value));
+    addIfValid(learner, "employStatus", document.getElementById('employStatus').value);
+    addIfValid(learner, "isNTUCUnionMember", document.getElementById('isNTUCUnionMember').value === "true");
+    addIfValid(learner, "residentialStatus", Number(document.getElementById('residentialStatus').value));
+    addIfValid(learner, "passType", document.getElementById('passType').value);
+    addIfValid(learner, "isLowIncome", document.getElementById('isLowIncome').value === "true");
+    if (Object.keys(learner).length > 0) json.learner = learner;
+
+    // Company
+    const company = {};
+    addIfValid(company, "companyCode", document.getElementById('companyCode').value);
+    addIfValid(company, "employerUen", document.getElementById('employerUen').value);
+    addIfValid(company, "isSME", document.getElementById('isSME').value === "true");
+    addIfValid(company, "isUnionised", document.getElementById('isUnionised').value === "true");
+    addIfValid(company, "industryType", document.getElementById('industryType').value);
+    addIfValid(company, "isAffiliate", document.getElementById('isAffiliate').value === "true");
+    if (Object.keys(company).length > 0) json.company = company;
+
+    // Registration
+    const registration = {};
+    addIfValid(registration, "registrationDate", document.getElementById('registrationDate').value);
+    addIfValid(registration, "sponsorshipType", Number(document.getElementById('sponsorshipType').value));
+    if (Object.keys(registration).length > 0) json.registration = registration;
+
+    // Transaction and Booking
+    addIfValid(json, "transactionType", document.getElementById('transactionType').value);
+    addIfValid(json, "bookingId", document.getElementById('bookingId').value);
+
+    document.getElementById('outputJSON').value = JSON.stringify(json, null, 4);
+}
+</script>
+
+
+</body>
+</html>

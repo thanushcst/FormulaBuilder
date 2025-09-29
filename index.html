@@ -522,8 +522,8 @@ function generateJSON() {
     // Course
     const course = {};
     addIfValid(course, "code", document.getElementById('courseCode').value);
-	addIfValid(course, "courseType", document.getElementById('courseType').value);
-	addIfValid(course, "courseCategory", document.getElementById('courseCategory').value);
+	addIfValid(course, "type", document.getElementById('courseType').value);
+	addIfValid(course, "category", document.getElementById('courseCategory').value);
     addIfValid(course, "referenceNumber", document.getElementById('courseRef').value);
     addIfValid(course, "startDate", document.getElementById('courseStart').value);
     addIfValid(course, "endDate", document.getElementById('courseEnd').value);
@@ -531,8 +531,6 @@ function generateJSON() {
     addIfValid(course, "numberOfTrainingHours", Number(document.getElementById('trainingHours').value));
     addIfValid(course, "fundedHours", Number(document.getElementById('fundedHours').value));
     addIfValid(course, "assessmentFee", Number(document.getElementById('assessmentFee').value));
-
-    
 
     const module = {};
     addIfValid(module, "code", document.getElementById('moduleCode').value);

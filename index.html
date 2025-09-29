@@ -521,9 +521,9 @@ function generateJSON() {
 
     // Course
     const course = {};
-    addIfValid(course, "code", document.getElementById('courseCode').value);
-	addIfValid(course, "type", document.getElementById('courseType').value);
-	addIfValid(course, "category", document.getElementById('courseCategory').value);
+    addIfValid(course, "code", document.getElementById('code').value);
+	addIfValid(course, "type", document.getElementById('type').value);
+	addIfValid(course, "category", document.getElementById('category').value);
     addIfValid(course, "referenceNumber", document.getElementById('courseRef').value);
     addIfValid(course, "startDate", document.getElementById('courseStart').value);
     addIfValid(course, "endDate", document.getElementById('courseEnd').value);
